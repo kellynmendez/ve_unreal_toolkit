@@ -16,11 +16,10 @@
 
 # Built-in
 import sys
-import os
 
 # Third party
 import unreal
-from Pyside2 import QtGui, QtCore, QtWidgets
+from PySide6 import QtWidgets
 
 # Internal
 
@@ -61,7 +60,13 @@ def _create_qt_app():
     :return: The application
     :type: QtWidgets.QApplication
     """
-    app = QtWidgets.QApplication(sys.argv)
+    if not QtWidgets.QApplication.instance():
+        app = QtWidgets.QApplication(sys.argv)
+    else:
+        app = QtWidgets.QApplication.instance()
+    window = QtWidgets.QWidget()
+    window.show()
+    app.exec_()
     return app
 
 # ----------------------------------------------------------------------------------------#
@@ -109,6 +114,5 @@ class TestGUI(QtWidgets.QDialog):
 
 # ----------------------------------------------------------------------------------------#
 # -------------------------------------------------------------------------------- MAIN --#
-
-gui = TestGUI()
-gui.init_gui()
+get_qt_app()
+print("hello world")
