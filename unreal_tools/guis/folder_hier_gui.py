@@ -171,5 +171,3 @@ class CreateFolderHierGUI(QtWidgets.QDialog):
                 clicked = self.folder_tree.indexAt(event.pos())
                 if not clicked.isValid():
                     self.folder_tree.clearSelection()
-
-        return True
